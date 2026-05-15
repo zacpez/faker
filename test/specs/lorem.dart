@@ -19,7 +19,7 @@ void main() {
         final actual = [];
         final corpusSize = words.length;
         for (var i = 0; i < corpusSize + 1; i++) {
-          final word = faker.lorem.wordDistributed();
+          final word = faker.lorem.wordUnique();
           actual.add(word);
         }
         final nextWord = actual.removeLast();
@@ -30,7 +30,7 @@ void main() {
 
       test('should not repeat words until corpus is exhausted', () {
         final corpusSize = words.length;
-        final generatedWords = faker.lorem.wordsDistributed(corpusSize + 1);
+        final generatedWords = faker.lorem.wordsUnique(corpusSize + 1);
         final nextWord = generatedWords.removeLast();
         final uniqueWords = generatedWords.toSet();
 
@@ -56,7 +56,7 @@ void main() {
         final actual = [];
         final corpusSize = sentences.length;
         for (var i = 0; i < corpusSize + 1; i++) {
-          final sentence = faker.lorem.sentenceDistributed();
+          final sentence = faker.lorem.sentenceUnique();
           actual.add(sentence);
         }
         final nextSentence = actual.removeLast();
@@ -67,8 +67,7 @@ void main() {
 
       test('should not repeat sentences until corpus is exhausted', () {
         final corpusSize = sentences.length;
-        final generatedSentences =
-            faker.lorem.sentencesDistributed(corpusSize + 1);
+        final generatedSentences = faker.lorem.sentencesUnique(corpusSize + 1);
         final nextSentence = generatedSentences.removeLast();
         final uniqueSentences = generatedSentences.toSet();
 

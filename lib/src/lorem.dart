@@ -53,55 +53,55 @@ class Lorem {
         .toList();
   }
 
-  /// Generates a word using distributed selection.
+  /// Generates a word using unique selection.
   /// Words are returned in a random order without repeats until
-  /// the entire corpus has been exhausted, then reshuffled.
+  /// the entire corpus has been exhausted.
   ///
   /// Example:
   /// ```dart
-  ///   faker.lorem.wordDistributed();
+  ///   faker.lorem.wordUnique();
   /// ```
-  String wordDistributed() {
+  String wordUnique() {
     _shuffledWords ??= Shuffler(_provider.wordsList());
     return _shuffledWords!.next();
   }
 
-  /// Generates a list of random words using distributed selection.
+  /// Generates a list of random words using unique selection.
   /// Words are returned without repeats until the corpus is exhausted.
   ///
   /// Example:
   /// ```dart
-  ///   faker.lorem.wordsDistributed(3);
+  ///   faker.lorem.wordsUnique(3);
   /// ```
-  List<String> wordsDistributed(numberOfWords) {
+  List<String> wordsUnique(numberOfWords) {
     return Iterable<int>.generate(numberOfWords)
-        .map((_) => wordDistributed())
+        .map((_) => wordUnique())
         .toList();
   }
 
-  /// Generates a sentence using distributed selection.
+  /// Generates a sentence using unique selection.
   /// Sentences are returned in a random order without repeats until
-  /// the entire corpus has been exhausted, then reshuffled.
+  /// the entire corpus has been exhausted.
   ///
   /// Example:
   /// ```dart
-  ///   faker.lorem.sentenceDistributed();
+  ///   faker.lorem.sentenceUnique();
   /// ```
-  String sentenceDistributed() {
+  String sentenceUnique() {
     _shuffledSentences ??= Shuffler(_provider.sentencesList());
     return _shuffledSentences!.next();
   }
 
-  /// Generates a list of random sentences using distributed selection.
+  /// Generates a list of random sentences using unique selection.
   /// Sentences are returned without repeats until the corpus is exhausted.
   ///
   /// Example:
   /// ```dart
-  ///   faker.lorem.sentencesDistributed(3);
+  ///   faker.lorem.sentencesUnique(3);
   /// ```
-  List<String> sentencesDistributed(numberOfSentences) {
+  List<String> sentencesUnique(numberOfSentences) {
     return Iterable<int>.generate(numberOfSentences)
-        .map((_) => sentenceDistributed())
+        .map((_) => sentenceUnique())
         .toList();
   }
 }

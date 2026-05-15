@@ -35,8 +35,7 @@ void main() {
         () {
       // Same test scenario using distributed selection
       const testSize = 5;
-      final words =
-          List.generate(testSize, (_) => faker.lorem.wordDistributed());
+      final words = List.generate(testSize, (_) => faker.lorem.wordUnique());
       final uniqueWords = words.toSet();
 
       print('Generated words (distributed): $words');
@@ -78,7 +77,7 @@ void main() {
       final distributedIdentifiers = {};
       final freshFaker = Faker(); // Fresh instance for clean state
       for (final item in contentItems) {
-        final id = freshFaker.lorem.wordDistributed();
+        final id = freshFaker.lorem.wordUnique();
         distributedIdentifiers[id] = item;
       }
 
@@ -110,12 +109,12 @@ void main() {
       print(
           'Traditional selection collision rate over $runs runs: $collisionRate%');
 
-      // With distributed selection, collision rate is 0% (as long as testSize <= corpus size)
+      // With distributed selection, collision rate is 0% (as long as testSize <= corpus)
       var distributedCollisionCount = 0;
       for (var i = 0; i < runs; i++) {
         final freshFaker = Faker();
         final words =
-            List.generate(testSize, (_) => freshFaker.lorem.wordDistributed());
+            List.generate(testSize, (_) => freshFaker.lorem.wordUnique());
         if (words.toSet().length < testSize) {
           distributedCollisionCount++;
         }
